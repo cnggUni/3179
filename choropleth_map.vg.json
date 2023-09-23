@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Happiness Score Across Countries",
+  "title": "Happiness Score Across Countries in 2019",
   "width": 800,
   "height": 400,
   "projection": {"type": "equalEarth"},
