@@ -25,7 +25,7 @@
     "color": {
       "field": "Score",
       "type": "quantitative",
-      "scale": {"type": "sequential", "scheme": "yellowgreen"},
+      "scale": {"type": "sequential", "scheme": "greens"},
       "legend": {"title": "Happiness Score"}
     },
     "tooltip": [
