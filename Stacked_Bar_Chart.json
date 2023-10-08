@@ -7,37 +7,58 @@
     "url": "https://raw.githubusercontent.com/cnggUni/3179/main/SoutheastAsiaExplained.csv",
     "format": {"type": "csv"}
   },
-  "mark": "bar",
-  "params": [
+  "layer": [
     {
-      "name": "Explained_By",
-      "select": {"type": "point", "fields": ["Explained_By"]},
-      "bind": "legend"
+      "mark": "bar",
+      "params": [
+        {
+          "name": "Explained_By",
+          "select": {"type": "point", "fields": ["Explained_By"]},
+          "bind": "legend"
+        }
+      ],
+      "encoding": {
+        "x": {
+          "field": "Country_name",
+          "type": "nominal",
+          "axis": {"labelAngle": 45, "title": "Country"},  
+          "sort": {"field": "-Value"}
+        },
+        "y": {"field": "Value", "type": "quantitative"},
+        "color": {
+          "field": "Explained_By",
+          "type": "nominal",
+          "legend": {"title": "Explained By"}  
+        },
+        "opacity": {
+          "condition": {"param": "Explained_By", "value": 1},
+          "value": 0.35
+        }, 
+        "tooltip": [
+          {"field": "Country_name", "type": "nominal", "title": "Country"},
+          {"field": "Value", "type": "quantitative", "title": "Value"},
+          {"field": "Explained_By", "type": "nominal", "title": "Explained By"}
+        ]
+      }
+    },
+    {
+      "data": {"values": [{"Country_name": "Malaysia", "Value": 7.464}]},
+      "mark": {"type": "text", "align": "left", "dx": 80, "dy": -145},
+      "encoding": {
+        "text": {"value": "Average Global Happiness Score"}
+      }
+    },
+    {
+      "data": {"values": [{"Value": 5.408, "title": "Average Global Happiness Score"}]},
+      "mark": "rule",
+      "encoding": {
+        "y": {"field": "Value", "type": "quantitative"},
+        "color": {"value": "black"},
+        "text": {"field": "title", "type": "nominal"},
+        "strokeDash": {"value": [4, 4]} 
+      }
     }
   ],
-  "encoding": {
-    "x": {
-      "field": "Country_name",
-      "type": "nominal",
-      "axis": {"labelAngle": 45, "title": "Country"},  
-      "sort": {"field": "-Value"}
-    },
-    "y": {"field": "Value", "type": "quantitative"},
-    "color": {
-      "field": "Explained_By",
-      "type": "nominal",
-      "legend": {"title": "Explained By"}  
-    },
-    "opacity": {
-      "condition": {"param": "Explained_By", "value": 1},
-      "value": 0.35
-    }, 
-    "tooltip": [
-      {"field": "Country_name", "type": "nominal", "title": "Country"},
-      {"field": "Value", "type": "quantitative", "title": "Value"},
-      {"field": "Explained_By", "type": "nominal", "title": "Explained By"}
-    ]
-  },
   "config": {
     "view": {"stroke": "transparent"}
   }
