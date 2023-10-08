@@ -1,0 +1,44 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Explained Factors by Country",
+  "width": 500,
+  "height": 400,
+  "data": {
+    "url": "data/SoutheastAsiaExplained.csv",
+    "format": {"type": "csv"}
+  },
+  "mark": "bar",
+  "params": [
+    {
+      "name": "Explained_By",
+      "select": {"type": "point", "fields": ["Explained_By"]},
+      "bind": "legend"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "Country_name",
+      "type": "nominal",
+      "axis": {"labelAngle": 45, "title": "Country"},  
+      "sort": {"field": "-Value"}
+    },
+    "y": {"field": "Value", "type": "quantitative"},
+    "color": {
+      "field": "Explained_By",
+      "type": "nominal",
+      "legend": {"title": "Explained By"}  
+    },
+    "opacity": {
+      "condition": {"param": "Explained_By", "value": 1},
+      "value": 0.35
+    }, 
+    "tooltip": [
+      {"field": "Country_name", "type": "nominal", "title": "Country"},
+      {"field": "Value", "type": "quantitative", "title": "Value"},
+      {"field": "Explained_By", "type": "nominal", "title": "Explained By"}
+    ]
+  },
+  "config": {
+    "view": {"stroke": "transparent"}
+  }
+}

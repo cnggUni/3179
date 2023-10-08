@@ -1,9 +1,9 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Happiness Score Across Countries in 2019",
-  "width": 800,
+  "title": "Happiness Score Across Southeast Asia in 2019",
+  "width": 600,
   "height": 400,
-  "projection": {"type": "equalEarth"},
+  "projection": {"type": "mercator", "center": [105, 10], "scale": 500},
   "data": {
     "url": "https://raw.githubusercontent.com/JiazhouLiu/FIT3179/main/VegaLite/3_choropleth_map/js/ne_110m_admin_0_countries.topojson",
     "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
@@ -13,24 +13,35 @@
       "lookup": "properties.NAME",
       "from": {
         "data": {
-          "url": "https://raw.githubusercontent.com/cnggUni/3179/main/new_happinessData.csv"
+          "url": "data/HappinessScore2021.csv"
         },
         "key": "Country",
         "fields": ["Score"]
       }
     }
   ],
-  "mark": "geoshape",
-  "encoding": {
-    "color": {
-      "field": "Score",
-      "type": "quantitative",
-      "scale": {"type": "sequential", "scheme": "greens"},
-      "legend": {"title": "Happiness Score"}
+  "layer": [
+    {
+      "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"},
+      "data": {
+        "url": "https://raw.githubusercontent.com/JiazhouLiu/FIT3179/main/VegaLite/3_choropleth_map/js/ne_110m_admin_0_countries.topojson",
+        "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
+      }
     },
-    "tooltip": [
-      {"field": "properties.NAME", "type": "nominal", "title": "Country"},
-      {"field": "Score", "type": "quantitative", "title": "Happiness Score"}
-    ]
-  }
+    {
+      "mark": "geoshape",
+      "encoding": {
+        "color": {
+          "field": "Score",
+          "type": "quantitative",
+          "scale": {"type": "sequential", "scheme": "greens"},
+          "legend": {"title": "Happiness Score"}
+        },
+        "tooltip": [
+          {"field": "properties.NAME", "type": "nominal", "title": "Country"},
+          {"field": "Score", "type": "quantitative", "title": "Happiness Score"}
+        ]
+      }
+    }
+  ]
 }
