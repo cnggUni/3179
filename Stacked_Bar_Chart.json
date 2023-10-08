@@ -4,7 +4,7 @@
   "width": 500,
   "height": 400,
   "data": {
-    "url": "data/SoutheastAsiaExplained.csv",
+    "url": "https://raw.githubusercontent.com/cnggUni/3179/main/SoutheastAsiaExplained.csv",
     "format": {"type": "csv"}
   },
   "mark": "bar",
