@@ -13,7 +13,7 @@
       "lookup": "properties.NAME",
       "from": {
         "data": {
-          "url": "data/HappinessScore2021.csv"
+          "url": "https://raw.githubusercontent.com/cnggUni/3179/main/HappinessScore2021.csv"
         },
         "key": "Country",
         "fields": ["Score"]
