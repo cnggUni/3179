@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Happiness Score Across Southeast Asia in 2019",
+  "title": "Happiness Score Across Southeast Asia in 2021",
   "width": 600,
   "height": 400,
   "projection": {"type": "mercator", "center": [105, 10], "scale": 500},
