@@ -1,10 +1,10 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Explained Factors by Country",
+  "title": "Explained Factors by Country in 2022",
   "width": 500,
   "height": 400,
   "data": {
-    "url": "https://raw.githubusercontent.com/cnggUni/3179/main/SoutheastAsiaExplained.csv",
+    "url": "data/SA_Explained_2022_Long.csv",
     "format": {"type": "csv"}
   },
   "layer": [
@@ -12,47 +12,47 @@
       "mark": "bar",
       "params": [
         {
-          "name": "Explained_By",
-          "select": {"type": "point", "fields": ["Explained_By"]},
+          "name": "key",
+          "select": {"type": "point", "fields": ["key"]},
           "bind": "legend"
         }
       ],
       "encoding": {
         "x": {
-          "field": "Country_name",
+          "field": "category",
           "type": "nominal",
           "axis": {"labelAngle": 45, "title": "Country"},  
-          "sort": {"field": "-Value"}
+          "sort": {"field": "-value"}
         },
-        "y": {"field": "Value", "type": "quantitative"},
+        "y": {"field": "value", "type": "quantitative"},
         "color": {
-          "field": "Explained_By",
+          "field": "key",
           "type": "nominal",
           "legend": {"title": "Explained By"}  
         },
         "opacity": {
-          "condition": {"param": "Explained_By", "value": 1},
+          "condition": {"param": "key", "value": 1},
           "value": 0.35
         }, 
         "tooltip": [
-          {"field": "Country_name", "type": "nominal", "title": "Country"},
-          {"field": "Value", "type": "quantitative", "title": "Value"},
-          {"field": "Explained_By", "type": "nominal", "title": "Explained By"}
+          {"field": "category", "type": "nominal", "title": "Country"},
+          {"field": "value", "type": "quantitative", "title": "value"},
+          {"field": "key", "type": "nominal", "title": "Explained By"}
         ]
       }
     },
     {
-      "data": {"values": [{"Country_name": "Malaysia", "Value": 7.464}]},
+      "data": {"values": [{"category": "Malaysia", "value": 7.464}]},
       "mark": {"type": "text", "align": "left", "dx": 80, "dy": -145},
       "encoding": {
         "text": {"value": "Average Global Happiness Score"}
       }
     },
     {
-      "data": {"values": [{"Value": 5.408, "title": "Average Global Happiness Score"}]},
+      "data": {"values": [{"value": 5.408, "title": "Average Global Happiness Score"}]},
       "mark": "rule",
       "encoding": {
-        "y": {"field": "Value", "type": "quantitative"},
+        "y": {"field": "value", "type": "quantitative"},
         "color": {"value": "black"},
         "text": {"field": "title", "type": "nominal"},
         "strokeDash": {"value": [4, 4]} 

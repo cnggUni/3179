@@ -1,0 +1,57 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 600,
+  "height": 400,
+  "title": "Past Happiness Rankings of Southeast Asia Countries",
+  "data": {
+    "url": "data/SAOriginalHappinessExplained2022.csv"
+  },
+  "transform": [
+    {
+      "window": [{ "op": "rank", "as": "rank" }],
+      "sort": [{ "field": "Life_Ladder", "order": "descending" }],
+      "groupby": ["year"]
+    },
+    {
+      "filter": { "field": "Region", "equal": "Southeast Asia" }
+    }
+  ],
+  "encoding": {
+    "x": { "field": "year", "type": "ordinal" },
+    "y": { "field": "rank", "type": "ordinal", "axis": { "title": "Rank" } },
+    "color": { "field": "Country_name", "type": "nominal" },
+    "tooltip": [
+      { "field": "Country_name", "type": "nominal" },
+      { "field": "year", "type": "ordinal" },
+      { "field": "Life_Ladder", "type": "quantitative" },
+      { "field": "rank", "type": "ordinal" }
+    ]
+  },
+  "layer": [
+    {
+      "mark": { "type": "line", "point": true, "size": 3 },
+      "params": [
+        {
+          "name": "selectedCountry",
+          "select": { "type": "point", "fields": ["Country_name"] },
+          "bind": "legend"
+        }
+      ],
+      "encoding": {
+        "opacity": {
+          "condition": { "param": "selectedCountry", "value": 1 },
+          "value": 0.05
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "size": 100,
+        "point": { "filled": true, "size": 100 },
+        "opacity": 0.1  
+      }
+    }
+  ],
+  "config": { "axis": { "labelFontSize": 12 } }
+}
