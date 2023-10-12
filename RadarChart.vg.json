@@ -14,7 +14,7 @@
     "data": [
         {
             "name": "table",
-            "url": "data/SA_Explained_2022_Long.csv", 
+            "url": "https://raw.githubusercontent.com/cnggUni/3179/main/SA_Explained_2022_Long.csv", 
             "format": {
               "type": "csv",
               "parse": { "category": "string", "value": "number" } 
