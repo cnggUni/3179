@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>W10 Homework</title>
   <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
@@ -15,11 +16,50 @@
   <!-- Google font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Happy+Monkey&display=swap" rel="stylesheet">
 
-  <!-- CSS file -->
-  <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
+  <style>
+    .center-text h1 {
+      text-align: center;
+      font-family: 'Happy Monkey', sans-serif;
+    }
+  
+  </style>
 
+<style>
+  .center-text {
+    text-align: center;
+  }
+
+  #categorySelect {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+  }
+</style>
+
+  <style>
+    .banner {
+      background-color: #c5d5ba; /* Choose your desired background color */
+      color: #000000; /* Text color for the banner */
+      padding: 10px;
+      text-align: center;
+      font-weight: bold;
+      font-family: 'Happy Monkey', sans-serif;
+    }
+  </style>
+
+  <style>
+    body {
+      background-color: lightbeige; /* You can use a specific color code or color name */
+    }
+  </style>
+
+  <style>
+    body {
+      background-color: #eff4ed;
+    }
+  </style>
 
 </head>
 
@@ -28,37 +68,122 @@
   <div class="page">
 
     <!-- pure grid group -->
-    <div class="pure-g">
-      <div class="pure-u-1-1 center-text">
+    <div class="center-text">
         <h1>Happiness in Southeast Asia Countries</h1>
         <p>This visualization shows Happiness score in Southeast Asia Countries</p>
-      </div>
     </div>
     <!-- end pure grid group -->
 
-    <!-- pure grid group -->
-    <div class="pure-g">
-      <div class="pure-u-1-2">
+    <div class="banner">
+      Map of Southeast Asia
+    </div>
+
+    <!-- Add vis2 here -->
+    <div class="center-text">
         <div id="vis2" class="vis-container"></div>
-      </div>
-      <div class="pure-u-1-2">
-        <div id="vis1" class="vis-container" style="margin-left: 1px;"></div>
-      </div>
     </div>
     <!-- end pure grid group -->
+
+    <div class="banner">
+      So what makes up these numbers in 2020?
+    </div>
+    
+    <div class="center-text">
+      <p>Results of users explained what was the main reason of selective the happiness score </p>
+      <div id="vis1" class="vis-container"></div>
+  </div>
+
+  <div class="banner">
+    Country to Country Comparison
+  </div>
+
+  <div class="center-text">
+    <label for="categorySelect">Select Category:</label>
+    <select id="categorySelect">
+      <option value="Singapore">Singapore</option>
+      <option value="Thailand">Thailand</option>
+      <option value="Philippines">Philippines</option>
+      <option value="Vietnam">Vietnam</option>
+      <option value="Malaysia">Malaysia</option>
+      <option value="Indonesia">Indonesia</option>
+      <option value="Laos">Laos</option>
+      <option value="Cambodia">Cambodia</option>
+      <option value="Myanmar">Myanmar</option>
+    </select>
+    <div id="chart"></div>
+  
+  
+  <script>
+    const categorySelect = document.getElementById("categorySelect");
+  
+    // Function to update the chart based on the selected category
+    function updateChart(selectedCategory) {
+      // Load Vega-Lite specification from the file "RadarChart.vg.json"
+      fetch("RadarChart.vg.json")
+        .then(response => response.json())
+        .then(spec => {
+          vegaEmbed("#chart", spec, { actions: false }).then((result) => {
+            result.view.change("table", vega.changeset().remove(() => true).insert(result.view.data("table").filter(d => d.category === selectedCategory))).run();
+          });
+        })
+        .catch(error => {
+          console.error("Failed to load Vega-Lite specification:", error);
+        });
+    }
+  
+    // Add a change event listener to the category selection dropdown
+    categorySelect.addEventListener("change", () => {
+      const selectedCategory = categorySelect.value;
+      updateChart(selectedCategory);
+    });
+  
+    // Show the initial chart with the default category
+    const initialCategory = "Singapore"; // Set your initial category here
+    categorySelect.value = initialCategory;
+    updateChart(initialCategory);
+  </script>
+  </div>
+  
+</div>
+
+    <div class="banner">
+      Factors highly related to Happiness Score?
+    </div>
+
+    <div class="center-text">
+      <p>The relationships between these social issues can be influenced by cultural, societal, </p>
+       <p> and individual factors. Additionally, correlations can vary across different populations and regions.</p>
+      <div id="vis3" class="vis-container"></div>
+  </div>
+
+    <div class="banner">
+      Diving into the past
+    </div>
+
+    <!-- pure grid group -->
+    <div class="center-text">
+      <p>Here are the previous rankings of Southeast Asia's happiness score.</p>
+  </div>
+  <!-- end pure grid group -->
+
+  <div class="center-text">
+    <div id="vis4" class="vis-container"></div>
+  </div>
+
+
 
     <div class="pure-g">
       <div class="pure-u-1-1 small-font">
         <p>Created by : Ng Chen Ting 31861148. Dataset retrieved from WorldHappiness and Kaggle.</p>
       </div>
     </div>
-
-
   </div> <!-- end page -->
 
   <script type="text/javascript">
     var specVis1 = "./Stacked_Bar_Chart.json";
     var specVis2 = "./choropleth_map.vg.json";
+    var specVis3 = "./Scatter_Plot.vg.json";
+    var specVis4 = "./Ranking.vg.json"
 
     vegaEmbed('#vis1', specVis1, { "actions": false });
 
@@ -66,6 +191,13 @@
       // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
     }).catch(console.error);
 
+    vegaEmbed('#vis3', specVis3, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    vegaEmbed('#vis4', specVis4, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
   </script>
 </body>
 
