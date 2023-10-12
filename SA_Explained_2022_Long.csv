@@ -1,0 +1,64 @@
+"category","key","value"
+"Singapore","GDP per capita",2.149
+"Philippines","GDP per capita",1.268
+"Thailand","GDP per capita",1.535
+"Malaysia","GDP per capita",1.689
+"Vietnam","GDP per capita",1.252
+"Indonesia","GDP per capita",1.382
+"Laos","GDP per capita",1.239
+"Cambodia","GDP per capita",1.019
+"Myanmar","GDP per capita",1.038
+"Singapore","Social Support",1.127
+"Philippines","Social Support",0.912
+"Thailand","Social Support",1.096
+"Malaysia","Social Support",0.938
+"Vietnam","Social Support",0.932
+"Indonesia","Social Support",0.883
+"Laos","Social Support",0.654
+"Cambodia","Social Support",0.732
+"Myanmar","Social Support",0.829
+"Singapore","Healthy Life Expectancy",0.851
+"Philippines","Healthy Life Expectancy",0.514
+"Thailand","Healthy Life Expectancy",0.697
+"Malaysia","Healthy Life Expectancy",0.62
+"Vietnam","Healthy Life Expectancy",0.611
+"Indonesia","Healthy Life Expectancy",0.539
+"Laos","Healthy Life Expectancy",0.479
+"Cambodia","Healthy Life Expectancy",0.505
+"Myanmar","Healthy Life Expectancy",0.491
+"Singapore","Freedom to make life choices",0.672
+"Philippines","Freedom to make life choices",0.678
+"Thailand","Freedom to make life choices",0.617
+"Malaysia","Freedom to make life choices",0.654
+"Vietnam","Freedom to make life choices",0.707
+"Indonesia","Freedom to make life choices",0.62
+"Laos","Freedom to make life choices",0.679
+"Cambodia","Freedom to make life choices",0.74
+"Myanmar","Freedom to make life choices",0.513
+"Singapore","Generosity",0.163
+"Philippines","Generosity",0.107
+"Thailand","Generosity",0.321
+"Malaysia","Generosity",0.213
+"Vietnam","Generosity",0.143
+"Indonesia","Generosity",0.468
+"Laos","Generosity",0.197
+"Cambodia","Generosity",0.166
+"Myanmar","Generosity",0.452
+"Singapore","Perceptions of Corruption",0.587
+"Philippines","Perceptions of Corruption",0.142
+"Thailand","Perceptions of Corruption",0.026
+"Malaysia","Perceptions of Corruption",0.126
+"Vietnam","Perceptions of Corruption",0.105
+"Indonesia","Perceptions of Corruption",0.047
+"Laos","Perceptions of Corruption",0.184
+"Cambodia","Perceptions of Corruption",0.068
+"Myanmar","Perceptions of Corruption",0.194
+"Singapore","Dystopia residual",0.932
+"Philippines","Dystopia residual",2.283
+"Thailand","Dystopia residual",1.6
+"Malaysia","Dystopia residual",1.471
+"Vietnam","Dystopia residual",1.735
+"Indonesia","Dystopia residual",1.3
+"Laos","Dystopia residual",1.709
+"Cambodia","Dystopia residual",1.41
+"Myanmar","Dystopia residual",0.877
