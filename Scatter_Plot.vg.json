@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Scatter Plot of Ladder Score, Life Expectancy, and GDP per Capita",
   "data": {
-    "url": "data/OriginalHappinessExplained2022.csv"
+    "url": "https://raw.githubusercontent.com/cnggUni/3179/main/OriginalHappinessExplained2022.csv"
   },
   "params": [
     {
