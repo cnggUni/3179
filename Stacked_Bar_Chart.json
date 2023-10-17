@@ -7,6 +7,7 @@
     "url": "https://raw.githubusercontent.com/cnggUni/3179/main/SA_Explained_2022_Long.csv",
     "format": {"type": "csv"}
   },
+
   "layer": [
     {
       "mark": "bar",
@@ -21,41 +22,45 @@
         "x": {
           "field": "category",
           "type": "nominal",
-          "axis": {"labelAngle": 45, "title": "Country"},  
+          "axis": {"labelAngle": 45, "title": "Country"},
           "sort": {"field": "-value"}
         },
         "y": {"field": "value", "type": "quantitative"},
         "color": {
           "field": "key",
           "type": "nominal",
-          "legend": {"title": "Explained By"}  
+          "legend": {"title": "Explained By"},
+          "scale": {
+            "range": ["#E69F00","#56B4E9","#009E73","#F0E442","#0072B2","#D55E00","#CC79A7"]
+          }
         },
         "opacity": {
           "condition": {"param": "key", "value": 1},
           "value": 0.35
-        }, 
+        },
         "tooltip": [
           {"field": "category", "type": "nominal", "title": "Country"},
           {"field": "value", "type": "quantitative", "title": "value"},
           {"field": "key", "type": "nominal", "title": "Explained By"}
         ]
+        
       }
     },
     {
       "data": {"values": [{"category": "Malaysia", "value": 7.464}]},
-      "mark": {"type": "text", "align": "left", "dx": 80, "dy": -145},
+      "mark": {"type": "text", "align": "left", "dx": 60, "dy": -145},
       "encoding": {
-        "text": {"value": "Average Global Happiness Score"}
+        "text": {"value": "Average Global Happiness Score : 5.408"}
       }
     },
     {
-      "data": {"values": [{"value": 5.408, "title": "Average Global Happiness Score"}]},
+      "data": {"values": [{"value": 5.408, "title": "Average Global Happiness Score : 5.408"}]},
       "mark": "rule",
       "encoding": {
         "y": {"field": "value", "type": "quantitative"},
         "color": {"value": "black"},
         "text": {"field": "title", "type": "nominal"},
-        "strokeDash": {"value": [4, 4]} 
+        "strokeDash": {"value": [4, 4]}
       }
     }
   ],

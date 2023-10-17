@@ -1,0 +1,26 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "data/SA_Explained_2022_Long.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.category === selectedCategory1  || datum.category === selectedCategory2"
+    }
+  ],
+  "mark": "bar",
+  "encoding": {
+    "x": {"field": "category", "type": "nominal"},
+    "y": {"field": "value", "type": "quantitative", "title": "Value"},
+    "color": {"field": "category", "type": "nominal", "legend": {"title": "Country"}},
+    "column": {"field": "key", "type": "nominal", "title": "Key", "spacing": 60}
+  },
+  "config": {
+    "view": {"stroke": "transparent"},
+    "axisX": {"title": ""},
+    "axis": {"domainWidth": 1},
+    "axisY": {"titleAlign": "left"},
+    "scale": {"bandPaddingInner": 0.2},
+    "range": {"category": ["#1f77b4", "#ff7f0e"]}
+  }
+}

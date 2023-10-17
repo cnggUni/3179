@@ -19,12 +19,11 @@
   "encoding": {
     "x": { "field": "year", "type": "ordinal" },
     "y": { "field": "rank", "type": "ordinal", "axis": { "title": "Rank" } },
-    "color": { "field": "Country_name", "type": "nominal" },
+    "color": { "field": "Country_name", "type": "nominal", "legend": { "title": "Country name" }, "title": "Country name", "scale": { "range": ["#BE5566","#E69F00", "#56B4E9", "#009E73","#AA3377", "#F0E442", "#0072B2", "#D55E00", "#CC79A7"] } },
     "tooltip": [
-      { "field": "Country_name", "type": "nominal" },
-      { "field": "year", "type": "ordinal" },
-      { "field": "Life_Ladder", "type": "quantitative" },
-      { "field": "rank", "type": "ordinal" }
+      { "field": "Country_name", "type": "nominal", "title": "Country" },
+      { "field": "rank", "type": "ordinal", "title": "Rank" },
+      { "field": "Life_Ladder", "type": "quantitative", "title": "Happiness Score" }
     ]
   },
   "layer": [
@@ -49,7 +48,7 @@
         "type": "circle",
         "size": 100,
         "point": { "filled": true, "size": 100 },
-        "opacity": 0.1  
+        "opacity": 0.1
       }
     }
   ],

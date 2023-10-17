@@ -51,6 +51,26 @@
           {"field": "Score", "type": "quantitative", "title": "Happiness Score"}
         ]
       }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "text": "____________________ Malaysia ranks 4th with 5.711 Score",
+        "align": "left",
+        "baseline": "top",
+        "dx": -20,
+        "dy": 30 
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "text": "______________ Phillipines ranks 2nd with 5.904 Score",
+        "align": "left",
+        "baseline": "top",
+        "dx": 10,
+        "dy": -90
+      }
     }
   ]
 }

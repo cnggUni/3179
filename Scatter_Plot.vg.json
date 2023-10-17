@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Scatter Plot of Ladder Score, Life Expectancy, and GDP per Capita",
+  "title": "Happiness Score, Life Expectancy, and GDP per Capita's Relationship",
   "data": {
     "url": "https://raw.githubusercontent.com/cnggUni/3179/main/OriginalHappinessExplained2022.csv"
   },
@@ -23,12 +23,14 @@
         "options": ["Southeast Asia", "Western Europe", "North America and ANZ", "Middle East and North Africa", "Latin America and Caribbean", "Central and Eastern Europe", "East Asia"],
         "name": "Select Region : "
       },
-      "value": "Southeast Asia" 
+      "value": "Southeasat Asia" 
     }
   ],
   "mark": {
     "type": "circle",
-    "opacity": 0.6
+    "opacity": 0.4,
+    "stroke": "black", 
+    "strokeWidth": 1
   },
   "transform": [
     {
@@ -45,25 +47,30 @@
       "field": "Healthy_life_expectancy_at_birth",
       "type": "quantitative",
       "title": "Life Expectancy",
-      "scale": {"domain": [0, 75]} 
+      "scale": {"domain": [0, 80]} 
     },
     "y": {
       "field": "Life_Ladder",
       "type": "quantitative",
-      "title": "Ladder Score",
+      "title": "Happiness Score",
       "scale": {"domain": [0, 9]} 
     },
     "size": {
       "field": "Log_GDP_per_capita",
       "type": "quantitative",
-      "title": "GDP per Capita"
+      "title": "Log GDP per Capita",
+      "scale": {
+        "domain": [7, 10]
+      }
     },
     "color": {
-      
-
       "field": "Region",
       "type": "nominal",
-      "title": "Region"
+      "title": "Region",
+      "scale": {
+        "domain": ["Southeast Asia", "Western Europe", "North America and ANZ", "Middle East and North Africa", "Latin America and Caribbean", "Central and Eastern Europe", "East Asia"],
+        "range": ["#009E73","#E69F00","#56B4E9","#F0E442","#0072B2","#D55E00","#CC79A7"]
+      }
     },
     "tooltip": [
       {
@@ -79,20 +86,15 @@
       {
         "field": "Life_Ladder",
         "type": "quantitative",
-        "title": "Ladder Score"
+        "title": "Happiness"
       },
       {
         "field": "Log_GDP_per_capita",
         "type": "quantitative",
-        "title": "GDP per Capita"
-      },
-      {
-        "field": "Region",
-        "type": "nominal",
-        "title": "Region"
+        "title": "Log GDP per Capita"
       }
     ]
   },
-  "width": 600,
+  "width": 500,
   "height": 400
 }
