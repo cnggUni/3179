@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>W10 Homework</title>
+  <title>Happiness in Southeast Asia</title>
   <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
   <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
@@ -36,6 +36,16 @@
     margin: 0 auto;
     text-align: center;
   }
+
+  #chart {
+  display: flex;
+  justify-content: center;
+  height: 55vh;
+}
+.select {
+            color: blue; /* Change the color to the desired color */
+            font-size: 10px;
+        }
 </style>
 
   <style>
@@ -70,81 +80,122 @@
 
     <!-- pure grid group -->
     <div class="center-text">
-        <h1>Happiness in Southeast Asia Countries</h1>
+        <h1><b>Happiness in Southeast Asia </b></h1>
         <p>This visualization shows Happiness score in Southeast Asia Countries</p>
     </div>
     <!-- end pure grid group -->
 
     <div class="banner">
-      Map of Southeast Asia
+      Which country is the happiest?
     </div>
+  
+
 
     <!-- Add vis2 here -->
     <div class="center-text">
+      <p>Taken from World Happiness Report, it colours the countries in Southeast Asia based</p>
+      <p>on happiness score where the darker the area, the higher the score, the happier the country.</p>
+
         <div id="vis2" class="vis-container"></div>
     </div>
     <!-- end pure grid group -->
 
     <div class="banner">
-      So what makes up these numbers in 2020?
+      So what makes up these numbers?
     </div>
     
     <div class="center-text">
-      <p>Results of users explained what was the main reason of selective the happiness score </p>
+      <p>These are the factors contributing to the users's selection of happiness score </p>
+      <p>This also serves as a ranking chart for 2022's southeast asia countries.</p>
       <div id="vis1" class="vis-container"></div>
   </div>
 
   <div class="banner">
-    Country to Country Comparison
+    Country to country comparison
   </div>
 
-  <div class="center-text">
-    <label for="categorySelect">Select Category:</label>
-    <select id="categorySelect">
-      <option value="Singapore">Singapore</option>
-      <option value="Thailand">Thailand</option>
-      <option value="Philippines">Philippines</option>
-      <option value="Vietnam">Vietnam</option>
-      <option value="Malaysia">Malaysia</option>
-      <option value="Indonesia">Indonesia</option>
-      <option value="Laos">Laos</option>
-      <option value="Cambodia">Cambodia</option>
-      <option value="Myanmar">Myanmar</option>
-    </select>
-    <div id="chart"></div>
+<div class="center-text">
+  <p>Ever wondered how the countries are like compared to each other?</p>
+  <p> You can do it here by selecting two countries and observe! </p>
+  <label for="categorySelect1">Select First Country:</label>
+  <select id="categorySelect1">
+    <option value="Singapore" >Singapore</option>
+    <option value="Thailand">Thailand</option>
+    <option value="Philippines">Philippines</option>
+    <option value="Vietnam">Vietnam</option>
+    <option value="Malaysia">Malaysia</option>
+    <option value="Indonesia">Indonesia</option>
+    <option value="Laos">Laos</option>
+    <option value="Cambodia">Cambodia</option>
+    <option value="Myanmar">Myanmar</option>
+  </select>
+
+  <label for="categorySelect2">Select Second Country:</label>
+  <select id="categorySelect2">
+    <option value="Singapore">Singapore</option>
+    <option value="Thailand">Thailand</option>
+    <option value="Philippines">Philippines</option>
+    <option value="Vietnam">Vietnam</option>
+    <option value="Malaysia">Malaysia</option>
+    <option value="Indonesia">Indonesia</option>
+    <option value="Laos">Laos</option>
+    <option value="Cambodia">Cambodia</option>
+    <option value="Myanmar">Myanmar</option>
+  </select>
+
+  <div id="chart"></div>
+</div>
+
+<script>
+  const categorySelect1 = document.getElementById("categorySelect1");
+  const categorySelect2 = document.getElementById("categorySelect2");
+
+  const chartContainer = document.getElementById("chart");
+
+
+  // Flag to keep track of the currently displayed chart type
+  let isBarChart = true;
+
   
+  const radarChartSpec = "RadarChart.vg.json"
   
-  <script>
-    const categorySelect = document.getElementById("categorySelect");
-  
-    // Function to update the chart based on the selected category
-    function updateChart(selectedCategory) {
-      // Load Vega-Lite specification from the file "RadarChart.vg.json"
-      fetch("RadarChart.vg.json")
-        .then(response => response.json())
-        .then(spec => {
-          vegaEmbed("#chart", spec, { actions: false }).then((result) => {
-            result.view.change("table", vega.changeset().remove(() => true).insert(result.view.data("table").filter(d => d.category === selectedCategory))).run();
-          });
-        })
-        .catch(error => {
-          console.error("Failed to load Vega-Lite specification:", error);
+  // Function to update the radar chart based on the selected categories
+  function updateRadarChart(selectedCategory1, selectedCategory2) {
+    // Load Vega-Lite specification for the radar chart
+    fetch("RadarChart.vg.json")
+      .then(response => response.json())
+      .then(spec => {
+        vegaEmbed("#chart", spec, { actions: false }).then((result) => {
+          // Filter data for the selected categories
+          const filteredData = result.view.data("table").filter(d => d.category === selectedCategory1 || d.category === selectedCategory2);
+          result.view.change("table", vega.changeset().remove(() => true).insert(filteredData)).run();
         });
-    }
-  
-    // Add a change event listener to the category selection dropdown
-    categorySelect.addEventListener("change", () => {
-      const selectedCategory = categorySelect.value;
-      updateChart(selectedCategory);
-    });
-  
-    // Show the initial chart with the default category
-    const initialCategory = "Singapore"; // Set your initial category here
-    categorySelect.value = initialCategory;
-    updateChart(initialCategory);
-  </script>
-  </div>
-  
+      })
+      .catch(error => {
+        console.error("Failed to load Vega-Lite specification for the radar chart:", error);
+      });
+  }
+
+  // Add change event listeners to both category selection dropdowns
+  categorySelect1.addEventListener("change", () => {
+    const selectedCategory1 = categorySelect1.value;
+    const selectedCategory2 = categorySelect2.value;
+    updateRadarChart(selectedCategory1, selectedCategory2);
+  });
+
+  categorySelect2.addEventListener("change", () => {
+    const selectedCategory1 = categorySelect1.value;
+    const selectedCategory2 = categorySelect2.value;
+    updateRadarChart(selectedCategory1, selectedCategory2);
+  });
+
+  // Show the initial radar chart
+  const initialCategory1 = "Singapore"; // Set your initial category here
+  const initialCategory2 = "Malaysia"; // Set your initial category here
+  categorySelect1.value = initialCategory1;
+  categorySelect2.value = initialCategory2;
+  updateRadarChart(initialCategory1, initialCategory2);
+</script>
 </div>
 
     <div class="banner">
@@ -152,9 +203,11 @@
     </div>
 
     <div class="center-text">
-      <p>The relationships between these social issues can be influenced by cultural, societal, </p>
-       <p> and individual factors. Additionally, correlations can vary across different populations and regions.</p>
+      <p>The relationships between happiness score can be influenced by Life Expectancy and GDP.</p>
+      <p> Additionally, correlations can vary across different populations and regions.</p>
+
       <div id="vis3" class="vis-container"></div>
+      <p> Drag the slider to observe specific years and compare Southeast Asia with other regions</p>
   </div>
 
     <div class="banner">
@@ -163,7 +216,8 @@
 
     <!-- pure grid group -->
     <div class="center-text">
-      <p>Here are the previous rankings of Southeast Asia's happiness score.</p>
+      <p>Here are the previous rankings of Southeast Asia's happiness score up until the year 2021</p>
+      <p>for you to notice the highs and lows of each country and their peaks.</p> 
   </div>
   <!-- end pure grid group -->
 
@@ -172,10 +226,9 @@
   </div>
 
 
-
     <div class="pure-g">
       <div class="pure-u-1-1 small-font">
-        <p>Created by : Ng Chen Ting 31861148. Dataset retrieved from WorldHappiness and Kaggle.</p>
+        <p>Created by : Ng Chen Ting 31861148. Dataset retrieved from https://worldhappiness.report/ed/2022/#appendices-and-data</p>
       </div>
     </div>
   </div> <!-- end page -->
